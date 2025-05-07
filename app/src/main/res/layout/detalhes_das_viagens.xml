@@ -27,187 +27,256 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/topBarCard"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="@null"
-        android:text="Minhas Viagens"
-        android:textColor="#000000"
+        app:cardBackgroundColor="#80FFFFFF"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Detalhes da Viagem"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/shareButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/button"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/topBarCard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/nav_view"
-        android:layout_marginTop="16dp">
+        app:layout_constraintBottom_toTopOf="@id/nav_view">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card1"
-            android:layout_width="320dp"
+            android:id="@+id/detailsCard"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp">
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="#CCFFFFFF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/travelTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bahamas"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/porto" />
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="118dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:paddingStart="12dp">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Viagem para Porto"
+                            android:text="Início da Viagem:"
                             android:textColor="@android:color/black"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/startDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="17/05/2022"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="Data: 10/06/2025"
-                            android:textColor="@android:color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Duração: 3 dias"
-                            android:textColor="@android:color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="Classificação:"
+                            android:text="Fim da Viagem:"
                             android:textColor="@android:color/black"
-                            android:textStyle="bold" />
+                            android:textSize="14sp" />
 
-                        <RatingBar
-                            style="@style/Widget.AppCompat.RatingBar.Small"
+                        <TextView
+                            android:id="@+id/endDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:isIndicator="true"
-                            android:numStars="5"
-                            android:rating="4"
-                            android:stepSize="1.0" />
+                            android:text="24/05/2022"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp" />
+
                     </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/travelImage"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/background_main"
+                        app:cornerRadius="8dp" />
+
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Descrição:"
+                    android:layout_marginTop="16dp"
+                    android:text="Classificação"
                     android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:rating="4"
+                    android:stepSize="0.5"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Descrição"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/descriptionText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Uma experiência inesquecível na cidade do Porto com visitas a monumentos históricos e gastronomia típica."
-                    android:textColor="@android:color/black" />
+                    android:layout_marginTop="8dp"
+                    android:text="Descobri praias de areia branca, mar cristalino e pores-do-sol inesquecíveis. Uma viagem relaxante com mergulhos, passeios de barco e sabores tropicais."
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Locais visitados:"
+                    android:layout_marginTop="16dp"
+                    android:text="Locais Visitados"
                     android:textColor="@android:color/black"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_width="257dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
 
                     <ImageView
                         android:layout_width="80dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/porto"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="4dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/porto" />
+                        app:cornerRadius="8dp" />
 
                     <ImageView
                         android:layout_width="80dp"
-                        android:layout_height="211dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/porto"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="4dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/porto" />
+                        app:cornerRadius="8dp" />
 
                     <ImageView
                         android:layout_width="80dp"
-                        android:layout_height="213dp"
+                        android:layout_height="80dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/porto" />
+                        android:src="@drawable/porto"
+                        app:cornerRadius="8dp" />
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp">
 
                     <Button
-                        android:id="@+id/button5"
+                        android:id="@+id/viewLocationsButton"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_weight="1"
                         android:text="Ver Locais"
-                        android:background="@drawable/rounded_button"
-                        android:layout_marginEnd="8dp"
 
                         android:textColor="@android:color/black"
-                        android:elevation="4dp" />
+                        android:textSize="14sp"
+                        android:elevation="4dp"
+                        android:layout_marginEnd="8dp" />
 
                     <Button
-                        android:id="@+id/button6"
+                        android:id="@+id/editDetailsButton"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:background="@drawable/rounded_button"
-                        android:elevation="4dp"
-                        android:text="Editar viagem"
-                        android:textColor="@android:color/black" />
+                        android:text="Editar Detalhes"
+
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                        android:elevation="4dp" />
                 </LinearLayout>
 
             </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
     </ScrollView>
