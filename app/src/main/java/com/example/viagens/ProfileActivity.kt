@@ -35,6 +35,11 @@ class ProfileActivity : AppCompatActivity() {
                     // Não chamar finish aqui, pois queremos manter a navegação
                     true
                 }
+                R.id.navigation_notifications -> {
+                    startActivity(Intent(this, NovaViagemActivity::class.java))
+                    // Não chamar finish aqui
+                    true
+                }
                 R.id.navigation_dashboard -> {
                     startActivity(Intent(this, GaleriaActivity::class.java))
                     // Não chamar finish aqui

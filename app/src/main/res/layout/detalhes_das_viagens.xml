@@ -88,6 +88,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/nav_view">
 
+        <LinearLayout
+            android:id="@+id/viagensContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
         <androidx.cardview.widget.CardView
             android:id="@+id/detailsCard"
             android:layout_width="match_parent"
@@ -278,6 +284,7 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
     </ScrollView>
 

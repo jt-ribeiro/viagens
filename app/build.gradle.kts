@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    kotlin("kapt")
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt") // Adicionado para o Glide e Room
 }
 
 android {
@@ -47,15 +47,23 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
+    // Room Database
     implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx) // Room KTX para uso com coroutines
-    kapt(libs.androidx.room.compiler) // Compilador do Room
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
 
-    implementation(libs.lifecycle.viewmodel.ktx) // ViewModel com extensão KTX
+    // Glide (adicionado ao libs.versions.toml)
+    implementation(libs.glide)
+    kapt(libs.glide.compiler)
 
+    // Lifecycle/ViewModel
+    implementation(libs.lifecycle.viewmodel.ktx)
+
+    // AndroidX
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+    // Testes
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
