@@ -10,13 +10,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Encontra o botão pelo ID no layout
         val startButton = findViewById<Button>(R.id.start_button)
 
+        // Define a ação de clique do botão
         startButton.setOnClickListener {
-            // Exemplo: navegar para Login
+            // Cria uma Intent para abrir LoginActivity
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            finish()
+            finish() // Opcional: remove MainActivity da pilha
         }
     }
 }
