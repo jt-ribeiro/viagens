@@ -2,7 +2,7 @@ package com.example.viagens.data.model.repository
 
 import android.content.Context
 import com.example.viagens.data.model.User
-import com.example.viagens.data.model.database.AppDatabase
+
 
 class UserRepository(context: Context) {
     private val userDao = AppDatabase.getInstance(context).userDao()
