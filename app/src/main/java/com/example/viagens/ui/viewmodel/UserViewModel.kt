@@ -2,13 +2,13 @@ package com.example.viagens.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.viagens.data.model.User
 import com.example.viagens.data.model.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -23,14 +23,22 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun loginUser(email: String, password: String, onResult: (User?) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             val result = repository.loginUser(email, password)
-            onResult(result)
+
+            // ✅ Mude para Main Dispatcher antes de chamar o callback
+            withContext(Dispatchers.Main) {
+                onResult(result)
+            }
         }
     }
 
     fun checkIfUserExists(email: String, onResult: (Boolean) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             val exists = repository.checkIfUserExists(email)
-            onResult(exists)
+
+            // ✅ Mude para Main Dispatcher antes de chamar o callback
+            withContext(Dispatchers.Main) {
+                onResult(exists)
+            }
         }
     }
 }
