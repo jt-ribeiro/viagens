@@ -8,27 +8,29 @@
     tools:context=".MainActivity">
 
 
-<View
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="#40000000" />
-
     <!-- Título -->
-<TextView
-android:id="@+id/title_text"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="PlanMy\nTrip"
-android:textSize="36sp"
-android:textColor="@android:color/white"
-android:textStyle="bold"
-android:layout_marginStart="24dp"
-android:layout_alignParentStart="true"
-android:layout_alignParentTop="true"
-android:layout_marginTop="120dp" />
 
     <!-- Botão Começar -->
-<Button
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#40000000" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="314dp"
+        android:text="PlanMy\nTrip"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <Button
 android:id="@+id/start_button"
 android:layout_width="300dp"
 android:layout_height="60dp"
