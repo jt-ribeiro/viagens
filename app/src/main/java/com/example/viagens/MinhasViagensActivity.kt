@@ -52,6 +52,32 @@ class MinhasViagensActivity : AppCompatActivity() {
             aplicarFiltro("melhor_classificacao")
         }
 
+        binding.navView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.navigation_home -> {
+                    startActivity(Intent(this, MinhasViagensActivity::class.java))
+                    finish()
+                    true
+                }
+                //R.id.navigation_notifications -> {
+                //  startActivity(Intent(this, AdicionarViagemActivity::class.java))
+                //   finish()
+                //  true
+                //}
+                R.id.navigation_dashboard -> {
+                    startActivity(Intent(this, GaleriaActivity::class.java))
+                    finish()
+                    true
+                }
+                R.id.navigation_profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+
+                    true
+                }
+                else -> false
+            }
+        }
+
         binding.filterMaisRecente.setOnClickListener {
             aplicarFiltro("mais_recente")
         }
@@ -120,29 +146,6 @@ class MinhasViagensActivity : AppCompatActivity() {
             binding.scrollView.smoothScrollTo(0, binding.detalhesContainer.top)
         }
 
-        binding.navView.setOnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.navigation_home -> {
-                    // Já está na própria tela
-                    true
-                }
-                //R.id.navigation_notifications -> {
-                  //  startActivity(Intent(this, AdicionarViagemActivity::class.java))
-                 //   finish()
-                  //  true
-                //}
-                R.id.navigation_dashboard -> {
-                    startActivity(Intent(this, GaleriaActivity::class.java))
-                    finish()
-                    true
-                }
-                R.id.navigation_profile -> {
-                    startActivity(Intent(this, ProfileActivity::class.java))
-                    finish()
-                    true
-                }
-                else -> false
-            }
-        }
+
     }
 }

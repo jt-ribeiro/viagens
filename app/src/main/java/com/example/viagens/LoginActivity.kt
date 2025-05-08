@@ -32,7 +32,6 @@ class LoginActivity : AppCompatActivity() {
         // Verifica se já existe uma sessão ativa
         checkActiveSession()
 
-
         // Clique do botão de login
         binding.loginButton.setOnClickListener {
             val email = binding.emailInput.text.toString().trim()
@@ -48,13 +47,12 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Mostrar ProgressBar (se tiver)
-            // binding.progressBar.visibility = View.VISIBLE
-
             // Verificar login no banco usando ViewModel
             userViewModel.loginUser(email, password) { user ->
                 if (user != null) {
-                    // ✅ Isso agora roda na Main Thread
+                    // Salvar sessão do utilizador
+                    saveUserSession(user.email, user.name)
+
                     Toast.makeText(this, "Bem-vindo, ${user.name}!", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MinhasViagensActivity::class.java))
                     finish()

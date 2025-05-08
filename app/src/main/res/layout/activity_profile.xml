@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
+    android:layout_height="match_parent">
 
+    <!-- Fundo -->
     <ImageView
         android:id="@+id/backgroundImageView"
         android:layout_width="0dp"
@@ -17,6 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/background_register_blur" />
 
+    <!-- Overlay escuro -->
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -26,6 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Top bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topBar"
         android:layout_width="0dp"
@@ -79,13 +81,11 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:visibility="invisible" />
-
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Cartão de perfil -->
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -114,30 +114,35 @@
                 android:textSize="16sp"
                 android:textColor="@android:color/black" />
 
+            <!-- Nome -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <TextView
-                    android:id="@+id/nameTextView"
+                <EditText
+                    android:id="@+id/nameEditText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="André Gonçalves"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:background="@null"
+                    android:inputType="textPersonName"
+                    android:enabled="false" />
 
                 <ImageView
+                    android:id="@+id/nameEditIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_edit"
                     android:layout_marginStart="8dp" />
-
             </LinearLayout>
 
+            <!-- Email -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -152,23 +157,27 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <TextView
-                    android:id="@+id/emailTextView"
+                <EditText
+                    android:id="@+id/emailEditText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="andrefilipegoncalves@ipvc.pt"
                     android:textSize="16sp"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:background="@null"
+                    android:inputType="textEmailAddress"
+                    android:enabled="false" />
 
                 <ImageView
+                    android:id="@+id/emailEditIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_edit"
                     android:layout_marginStart="8dp" />
-
             </LinearLayout>
 
+            <!-- Palavra-passe -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -183,23 +192,27 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <TextView
-                    android:id="@+id/passwordTextView"
+                <EditText
+                    android:id="@+id/passwordEditText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="********"
                     android:textSize="16sp"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:background="@null"
+                    android:inputType="textPassword"
+                    android:enabled="false" />
 
                 <ImageView
+                    android:id="@+id/passwordEditIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_edit"
                     android:layout_marginStart="8dp" />
-
             </LinearLayout>
 
+            <!-- Permissões -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -227,13 +240,11 @@
                     android:id="@+id/notificationsSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
             </LinearLayout>
-
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
+    <!-- Botão guardar -->
     <Button
         android:id="@+id/saveChangesButton"
         android:layout_width="wrap_content"
@@ -249,6 +260,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Navegação inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
@@ -259,5 +271,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

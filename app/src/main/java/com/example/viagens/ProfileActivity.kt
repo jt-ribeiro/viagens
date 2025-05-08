@@ -1,6 +1,8 @@
 package com.example.viagens
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -21,79 +23,113 @@ class ProfileActivity : AppCompatActivity() {
 
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        // Carregar dados do utilizador logado
         loadCurrentUser()
-
-        // Clique nos ícones de editar
         setupEditListeners()
-
-        // Clique no botão "Guardar Alterações"
         setupSaveButton()
+
+        // Configurar a navegação da barra inferior
+        binding.navView.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.navigation_home -> {
+                    startActivity(Intent(this, MinhasViagensActivity::class.java))
+                    // Não chamar finish aqui, pois queremos manter a navegação
+                    true
+                }
+                R.id.navigation_dashboard -> {
+                    startActivity(Intent(this, GaleriaActivity::class.java))
+                    // Não chamar finish aqui
+                    true
+                }
+                R.id.navigation_profile -> {
+                    // Já está no perfil, então não fazemos nada
+                    true
+                }
+                else -> false
+            }
+        }
+
+        // Destacar o ícone de Perfil na barra de navegação
+        binding.navView.selectedItemId = R.id.navigation_profile
     }
 
     private fun loadCurrentUser() {
-        // Exemplo: pegar o email do usuário logado via SharedPreferences
         val sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE)
         val userEmail = sharedPreferences.getString("email", null)
 
-        if (userEmail != null) {
-            userViewModel.getUserByEmail(userEmail) { user ->
-                if (user != null) {
-                    currentUser = user
-                    updateUIWithUserData(user)
-                }
+        if (userEmail.isNullOrEmpty()) {
+            showToast("Erro: sessão inválida. Faça login novamente.")
+            finish() // Finaliza a activity e vai para o login
+            return
+        }
+
+        userViewModel.getUserByEmail(userEmail) { user ->
+            if (user != null) {
+                currentUser = user
+                updateUIWithUserData(user)
+            } else {
+                showToast("Utilizador não encontrado.")
             }
         }
     }
 
     private fun updateUIWithUserData(user: User) {
-        binding.nameTextView.text = user.name
-        binding.emailTextView.text = user.email
-        binding.passwordTextView.text = "********"
+        binding.nameEditText.setText(user.name)
+        binding.emailEditText.setText(user.email)
+        binding.passwordEditText.setText("********")
 
-        // Simulação de permissões (exemplo)
         binding.notificationsSwitch.isChecked = true
+
+        // Desabilitar os campos inicialmente
+        binding.nameEditText.isEnabled = false
+        binding.emailEditText.isEnabled = false
+        binding.passwordEditText.isEnabled = false
     }
 
     private fun setupEditListeners() {
-        // Editar nome
-        binding.nameTextView.setOnClickListener {
-            showEditDialog("name", currentUser.name) { newText ->
-                currentUser = currentUser.copy(name = newText)
-                binding.nameTextView.text = newText
-            }
+        binding.nameEditIcon.setOnClickListener {
+            binding.nameEditText.isEnabled = true
+            binding.nameEditText.requestFocus()
         }
 
-        // Editar email
-        binding.emailTextView.setOnClickListener {
-            showEditDialog("email", currentUser.email) { newText ->
-                currentUser = currentUser.copy(email = newText)
-                binding.emailTextView.text = newText
-            }
+        binding.emailEditIcon.setOnClickListener {
+            binding.emailEditText.isEnabled = true
+            binding.emailEditText.requestFocus()
         }
 
-        // Editar palavra-passe
-        binding.passwordTextView.setOnClickListener {
-            showEditDialog("password", "********") { newText ->
-                currentUser = currentUser.copy(password = newText)
-                binding.passwordTextView.text = "********"
-            }
+        binding.passwordEditIcon.setOnClickListener {
+            binding.passwordEditText.isEnabled = true
+            binding.passwordEditText.setText("") // Limpa os asteriscos
+            binding.passwordEditText.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.passwordEditText.requestFocus()
         }
     }
 
     private fun setupSaveButton() {
         binding.saveChangesButton.setOnClickListener {
-            // Atualizar utilizador no banco
+            val updatedName = binding.nameEditText.text.toString()
+            val updatedEmail = binding.emailEditText.text.toString()
+            val updatedPassword = binding.passwordEditText.text.toString()
+
+            currentUser = currentUser.copy(
+                name = updatedName,
+                email = updatedEmail,
+                password = if (updatedPassword.isNotBlank() && updatedPassword != "********") {
+                    updatedPassword
+                } else {
+                    currentUser.password
+                }
+            )
+
             userViewModel.updateUser(currentUser)
 
-            // Feedback ao utilizador
             showToast("Alterações guardadas!")
-        }
-    }
 
-    private fun showEditDialog(field: String, currentText: String, onConfirm: (String) -> Unit) {
-        // TODO: Implementar diálogo de edição com EditText
-        // Posso te ajudar com isso se quiser!
+            // Bloqueia novamente os campos
+            binding.nameEditText.isEnabled = false
+            binding.emailEditText.isEnabled = false
+            binding.passwordEditText.isEnabled = false
+        }
     }
 
     private fun showToast(message: String) {
