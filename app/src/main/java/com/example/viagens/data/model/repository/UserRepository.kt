@@ -18,4 +18,12 @@ class UserRepository(context: Context) {
     suspend fun checkIfUserExists(email: String): Boolean {
         return userDao.findByEmail(email) != null
     }
+
+    suspend fun updateUser(user: User) {
+        userDao.insert(user) // Sobrescreve por ser mesmo ID (email)
+    }
+
+    suspend fun getUserByEmail(email: String): User? {
+        return userDao.findByEmail(email)
+    }
 }
