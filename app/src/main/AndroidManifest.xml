@@ -42,6 +42,16 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
 
+        <activity
+            android:name=".DetalhesDasViagensActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".DetalhesLocaisActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+
         <!-- Perfil do usuário -->
         <activity
             android:name=".ProfileActivity"
@@ -53,10 +63,17 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
 
+        <!-- Novo Local -->
+        <activity
+            android:name=".NovoLocalActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+
         <!-- Galeria (se aplicável) -->
         <activity
             android:name=".GaleriaActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
 
     </application>
 

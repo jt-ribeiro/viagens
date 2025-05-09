@@ -4,9 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -40,10 +37,7 @@ class MinhasViagensActivity : AppCompatActivity() {
 
         // Carregar todas as viagens inicialmente
         viewModel.getTodasViagens { listaViagens ->
-            viagemAdapter = ViagemAdapter(listaViagens) { viagem ->
-                mostrarDetalhesDaViagem(viagem)
-            }
-            binding.viagensRecyclerView.adapter = viagemAdapter
+            viagemAdapter.updateViagens(listaViagens)
         }
 
         // Logout
@@ -68,11 +62,7 @@ class MinhasViagensActivity : AppCompatActivity() {
         // Bottom Navigation
         binding.navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigation_home -> {
-                    startActivity(Intent(this, MinhasViagensActivity::class.java))
-                    finish()
-                    true
-                }
+                R.id.navigation_home -> true // Já está na activity
                 R.id.navigation_dashboard -> {
                     startActivity(Intent(this, GaleriaActivity::class.java))
                     finish()
@@ -108,10 +98,7 @@ class MinhasViagensActivity : AppCompatActivity() {
                 "mais_antiga" -> listaViagens.sortedBy { it.dataInicio }
                 else -> listaViagens
             }
-            viagemAdapter = ViagemAdapter(viagensFiltradas) { viagem ->
-                mostrarDetalhesDaViagem(viagem)
-            }
-            binding.viagensRecyclerView.adapter = viagemAdapter
+            viagemAdapter.updateViagens(viagensFiltradas)
             Toast.makeText(
                 this,
                 when (tipo) {
@@ -126,29 +113,10 @@ class MinhasViagensActivity : AppCompatActivity() {
     }
 
     private fun mostrarDetalhesDaViagem(viagem: Viagem) {
-        binding.detalhesContainer.removeAllViews()
-
-        val descricao = TextView(this).apply {
-            text = "${viagem.descricao}\n\nInício: ${viagem.dataInicio} | Fim: ${viagem.dataFim}\nClassificação: ${viagem.rating}\nCusto: R$${viagem.custo}"
-            textSize = 16f
-            setPadding(24, 24, 24, 24)
+        // Redirecionar para DetalhesDasViagensActivity, passando o ID da viagem
+        val intent = Intent(this, DetalhesDasViagensActivity::class.java).apply {
+            putExtra("VIAGEM_ID", viagem.id)
         }
-
-        val btnFechar = Button(this).apply {
-            text = "Fechar Detalhes"
-            setBackgroundColor(getColor(android.R.color.holo_blue_light))
-            setTextColor(getColor(android.R.color.white))
-            setOnClickListener {
-                binding.detalhesContainer.visibility = View.GONE
-            }
-        }
-
-        binding.detalhesContainer.addView(descricao)
-        binding.detalhesContainer.addView(btnFechar)
-        binding.detalhesContainer.visibility = View.VISIBLE
-
-        binding.viagensRecyclerView.post {
-            binding.viagensRecyclerView.smoothScrollToPosition(0)
-        }
+        startActivity(intent)
     }
 }

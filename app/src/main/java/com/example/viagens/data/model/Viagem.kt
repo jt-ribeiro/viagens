@@ -11,6 +11,5 @@ data class Viagem(
     val dataFim: String,
     val descricao: String,
     val rating: Float,
-    val custo: Double,
-    val imagemUri: String? = null // Novo campo para URI da imagem
+    val imagemUri: String? = null // Campo para URI da imagem
 )

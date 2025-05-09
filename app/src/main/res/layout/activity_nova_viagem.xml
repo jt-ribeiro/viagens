@@ -154,6 +154,32 @@
                 android:stepSize="0.5"
                 android:layout_marginBottom="16dp" />
 
+            <EditText
+                android:id="@+id/editDataInicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Data de Início (dd/MM/yyyy)"
+                android:inputType="none"
+                android:clickable="true"
+                android:focusable="false"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#B3FFFFFF"
+                android:backgroundTint="#FFFFFF"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:id="@+id/editDataFim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Data de Fim (dd/MM/yyyy)"
+                android:inputType="none"
+                android:clickable="true"
+                android:focusable="false"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#B3FFFFFF"
+                android:backgroundTint="#FFFFFF"
+                android:layout_marginBottom="16dp" />
+
             <Button
                 android:id="@+id/btnSalvarNovaViagem"
                 android:layout_width="wrap_content"
