@@ -41,6 +41,34 @@ class NovaViagemActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[ViagemViewModel::class.java]
 
+
+        // Bottom Navigation
+        binding.navView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_notifications -> true // Já está na activity
+                R.id.navigation_dashboard -> {
+                    startActivity(Intent(this, GaleriaActivity::class.java))
+                    finish()
+                    true
+                }
+                R.id.navigation_notifications -> {
+                    startActivity(Intent(this, NovaViagemActivity::class.java))
+                    // Não chamar finish aqui
+                    true
+                }
+                R.id.navigation_dashboard -> {
+                    startActivity(Intent(this, GaleriaActivity::class.java))
+                    // Não chamar finish aqui
+                    true
+                }
+                R.id.navigation_profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+
         // Configurar clique na imagem para selecionar da galeria
         binding.imagemNovaViagem.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

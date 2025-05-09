@@ -14,15 +14,22 @@
         android:theme="@style/Theme.Viagens"
         tools:targetApi="31">
 
-        <!-- Activity principal -->
+        <!-- Intro Slider - Tela inicial -->
         <activity
-            android:name=".MainActivity"
+            android:name=".IntroSliderActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- MainActivity - Agora faz parte do slider -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden" />
 
         <!-- Tela de Login -->
         <activity
@@ -47,10 +54,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
 
-        <activity
-            android:name=".DetalhesLocaisActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
+
 
         <!-- Perfil do usuário -->
         <activity
@@ -63,17 +67,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
 
-        <!-- Novo Local -->
-        <activity
-            android:name=".NovoLocalActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
 
-        <!-- Galeria (se aplicável) -->
+        <!-- Galeria -->
         <activity
             android:name=".GaleriaActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
 
     </application>
 

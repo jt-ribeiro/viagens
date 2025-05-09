@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.viagens.databinding.ActivityMinhasViagensBinding
 import com.example.viagens.data.model.Viagem
+import com.example.viagens.databinding.ActivityMinhasViagensBinding
 import com.example.viagens.ui.adapter.ViagemAdapter
 import com.example.viagens.ui.viewmodel.ViagemViewModel
 
@@ -66,6 +66,16 @@ class MinhasViagensActivity : AppCompatActivity() {
                 R.id.navigation_dashboard -> {
                     startActivity(Intent(this, GaleriaActivity::class.java))
                     finish()
+                    true
+                }
+                R.id.navigation_notifications -> {
+                    startActivity(Intent(this, NovaViagemActivity::class.java))
+                    // Não chamar finish aqui
+                    true
+                }
+                R.id.navigation_dashboard -> {
+                    startActivity(Intent(this, GaleriaActivity::class.java))
+                    // Não chamar finish aqui
                     true
                 }
                 R.id.navigation_profile -> {
